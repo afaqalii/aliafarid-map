@@ -46,6 +46,13 @@ function makePopupContent(shop) {
   `;
 }
 function onEachFeature(feature, layer) {
+  layer.on("click", () => {
+    document.querySelector(".modal").classList.add("show");
+    const h1 = document.querySelector(".store");
+    console.log(feature);
+    const name = feature.properties.name;
+    h1.innerHTML = `${name}`;
+  });
   layer.bindPopup(makePopupContent(feature), {
     closeButton: false,
     offset: L.point(0, -8),
@@ -78,3 +85,15 @@ function flyToStore(store) {
       .openOn(map);
   }, 3000);
 }
+
+function showModal(store) {
+  document.querySelector(".modal").classList.add("show");
+  // const h1 = document.querySelector("store");
+  console.log(store);
+  // h1.innerHTML = store.properties.name;
+  // c.appendChild(h1);
+}
+
+document.querySelector(".close").addEventListener("click", () => {
+  document.querySelector(".modal").classList.remove("show");
+});
