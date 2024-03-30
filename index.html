@@ -12,6 +12,7 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./Zoom.css" />
   </head>
   <body>
     <main>
@@ -22,11 +23,30 @@
         <ul class="list"></ul>
       </div>
       <div class="modal">
-        <h1 class="store"></h1>
+        <div id="imageContainer">
+          <img
+            id="modalImage1"
+            class="modalImage"
+            src="./assets/img.jpg"
+            alt="Image"
+          />
+          <img
+            id="modalImage2"
+            class="modalImage"
+            src="./assets/3.jpg"
+            alt="Image"
+          />
+          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
+        </div>
+        <!-- <h1 class="store"></h1> -->
         <span class="close">X</span>
       </div>
       <div id="map"></div>
     </main>
+    <!-- webm's only! Not very many. Autoplay will play them all -->
+
+    <!-- Script -->
+    <script src="./Zoom.js"></script>
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
