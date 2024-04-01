@@ -99,7 +99,7 @@ img {
 .modalImage {
   width: 200px; /* Initial width */
   height: 200px;
-  transition: width 0.2s ease-in-out;
+  transition: all 0.3s linear;
   z-index: 999999;
 }
 
