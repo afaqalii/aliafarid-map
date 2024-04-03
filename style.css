@@ -17,7 +17,7 @@ main {
   background: whitesmoke;
 }
 #map {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 }
 .store-list .heading {
@@ -243,11 +243,11 @@ main {
 
 .change-type {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background-color: white;
+  bottom: 0px;
+  left: 0px;
+  /* background-color: white; */
   z-index: 999;
-  height: 60px;
+  height: 40px;
   width: 180px;
   display: flex;
   justify-content: center;
