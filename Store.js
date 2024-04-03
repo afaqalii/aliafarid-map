@@ -9,6 +9,7 @@ const storeList = [
       name: "Pizza outlet Beijing",
       address: "Beijing, China",
       phone: "23 2323 2323",
+      icon: "./assets/pizza.png",
     },
   },
   {
@@ -21,6 +22,7 @@ const storeList = [
       name: "Pizza outlet Shanghai",
       address: "Shanghai, China",
       phone: "23 2323 2323",
+      icon: "./assets/2.jpg",
     },
   },
   {
@@ -33,6 +35,7 @@ const storeList = [
       name: "Pizza outlet Guangzhou",
       address: "Guangzhou, China",
       phone: "23 2323 2323",
+      icon: "./assets/3.jpg",
     },
   },
   // Add more stores as needed
@@ -46,6 +49,7 @@ const storeList = [
       name: "Pizza outlet Guangzhou",
       address: "Guangzhou, China",
       phone: "23 2323 2323",
+      icon: "./assets/a.png",
     },
   },
   {
@@ -58,6 +62,7 @@ const storeList = [
       name: "Pizza outlet Guangzhou",
       address: "Guangzhou, China",
       phone: "23 2323 2323",
+      icon: "./assets/img.jpg",
     },
   },
   {
@@ -70,6 +75,7 @@ const storeList = [
       name: "Pizza outlet Guangzhou",
       address: "Guangzhou, China",
       phone: "23 2323 2323",
+      icon: "./assets/pizza.png",
     },
   },
 ];

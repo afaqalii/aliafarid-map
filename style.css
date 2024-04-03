@@ -7,9 +7,7 @@
 body {
   font-family: "Nunito Sans", sans-serif;
 }
-main {
-  /* display: flex; */
-}
+
 .store-list {
   width: 25%;
   height: 100vh;
@@ -17,8 +15,10 @@ main {
   background: whitesmoke;
 }
 #map {
+  /* height: 400px; */
   min-height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 .store-list .heading {
   background: #ff6900;
