@@ -167,3 +167,34 @@ function showModal(store) {
 document.querySelector(".close").addEventListener("click", () => {
   document.querySelector(".modal").classList.remove("show");
 });
+
+// let checkbox = document.getElementById("flexSwitchCheckDefault");
+
+// // Add an event listener to the checkbox
+// checkbox.addEventListener("change", function () {
+//   if (this.checked) {
+//     console.log("checked");
+//     document.querySelector("#map").classList.add("hidden");
+//     document.querySelector(".quadrant").classList.remove("hidden");
+//   } else {
+//     document.querySelector("#map").classList.remove("hidden");
+//     document.querySelector(".quadrant").classList.add("hidden");
+//   }
+// });
+document.addEventListener("DOMContentLoaded", function () {
+  const mapDiv = document.getElementById("map");
+  const quadrantDiv = document.querySelector(".quadrant");
+  const toggleButton = document.getElementById("toggleButton");
+  let isMapVisible = true;
+
+  toggleButton.addEventListener("click", function () {
+    isMapVisible = !isMapVisible;
+    if (isMapVisible) {
+      mapDiv.classList.remove("hidden");
+      quadrantDiv.classList.add("hidden");
+    } else {
+      mapDiv.classList.add("hidden");
+      quadrantDiv.classList.remove("hidden");
+    }
+  });
+});

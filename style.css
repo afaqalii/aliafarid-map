@@ -8,7 +8,7 @@ body {
   font-family: "Nunito Sans", sans-serif;
 }
 main {
-  display: flex;
+  /* display: flex; */
 }
 .store-list {
   width: 25%;
@@ -114,4 +114,150 @@ main {
   right: 20px;
   color: white;
   cursor: pointer;
+}
+
+/* Quandrant */
+.quadrant {
+  width: 100%;
+  min-height: 100vh;
+  background-color: black;
+  position: relative;
+  z-index: 9;
+}
+.quadrant-arrow-vertical {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  padding: 8px 0px;
+}
+.quadrant-arrow-vertical h3 {
+  color: white;
+}
+.quadrant-arrow-vertical-line {
+  background-color: white;
+  height: 95%;
+  width: 2px;
+}
+
+.quadrant-arrow-horizontal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+
+  transform: translateY(50%);
+  transform: translateX(-50%);
+  height: max-content;
+  display: flex;
+
+  align-items: center;
+  column-gap: 10px;
+  padding: 0px 8px;
+}
+.quadrant-arrow-horizontal h3 {
+  color: white;
+}
+.quadrant-arrow-horizontal-line {
+  background-color: white;
+  height: 2px;
+  width: 95%;
+}
+
+.quadrant .quadrant-row {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  padding: 40px 0px;
+  justify-content: center;
+}
+.quadrant-row .quadrant-box {
+  width: 45%;
+  height: 100%;
+  display: flex;
+}
+.quadrant .quadrant-row h4 {
+  color: white;
+  border: 1px solid green;
+  padding: 4px 9px;
+  width: max-content;
+  font-weight: 700;
+  font-size: 30px;
+  height: 45px;
+}
+
+.quadrant-row .quadrant-box {
+  display: flex;
+  position: relative;
+}
+.quadrant-row .quadrant-box:last-child {
+  justify-content: flex-end;
+}
+
+.quadrant-row-below .quadrant-box {
+  align-items: flex-end;
+}
+
+.quadrant .quadrant-box img {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+.quadrant .quadrant-box .img1 {
+  top: 20%;
+  left: 10%;
+}
+.quadrant .quadrant-box .img2 {
+  top: 50%;
+  left: 30%;
+}
+.quadrant .quadrant-box .img3 {
+  top: 50%;
+  left: 50%;
+}
+.quadrant .quadrant-box .img4 {
+  top: 50%;
+  left: 70%;
+}
+.quadrant .quadrant-box .img5 {
+  top: 20%;
+  left: 20%;
+}
+.quadrant .quadrant-box .img6 {
+  top: 30%;
+  left: 80%;
+}
+.quadrant .quadrant-box .img7 {
+  top: 20%;
+  left: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
+.change-type {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: white;
+  z-index: 999;
+  height: 60px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change-type button {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background-color: #ff6804;
+  outline: none;
+  color: white;
+  border: 0;
 }
