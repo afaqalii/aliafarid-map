@@ -108,7 +108,7 @@ document.querySelector(".close").addEventListener("click", () => {
 //     document.querySelector(".quadrant").classList.add("hidden");
 //   }
 // });
-document.getElementById("map").classList.add("hidden");
+document.querySelector(".quadrant").classList.add("hidden");
 document.addEventListener("DOMContentLoaded", function () {
   const mapDiv = document.getElementById("map");
   const quadrantDiv = document.querySelector(".quadrant");
@@ -118,11 +118,11 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleButton.addEventListener("click", function () {
     isMapVisible = !isMapVisible;
     if (isMapVisible) {
-      mapDiv.classList.remove("hidden");
-      quadrantDiv.classList.add("hidden");
-    } else {
       mapDiv.classList.add("hidden");
       quadrantDiv.classList.remove("hidden");
+    } else {
+      mapDiv.classList.remove("hidden");
+      quadrantDiv.classList.add("hidden");
     }
   });
 });

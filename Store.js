@@ -9,7 +9,7 @@ const storeList = [
       name: "Pizza outlet Beijing",
       address: "Beijing, China",
       phone: "23 2323 2323",
-      icon: "./assets/pizza.png",
+      icon: "./assets/4.jpg",
     },
   },
   {
@@ -75,7 +75,7 @@ const storeList = [
       name: "Pizza outlet Guangzhou",
       address: "Guangzhou, China",
       phone: "23 2323 2323",
-      icon: "./assets/pizza.png",
+      icon: "./assets/4.jpg",
     },
   },
 ];
