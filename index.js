@@ -108,6 +108,7 @@ document.querySelector(".close").addEventListener("click", () => {
 //     document.querySelector(".quadrant").classList.add("hidden");
 //   }
 // });
+document.getElementById("map").classList.add("hidden");
 document.addEventListener("DOMContentLoaded", function () {
   const mapDiv = document.getElementById("map");
   const quadrantDiv = document.querySelector(".quadrant");
@@ -123,5 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
       mapDiv.classList.add("hidden");
       quadrantDiv.classList.remove("hidden");
     }
+  });
+});
+document.querySelectorAll(".img").forEach((item) => {
+  item.addEventListener("click", () => {
+    document.querySelector(".modal").classList.add("show");
   });
 });
