@@ -182,6 +182,8 @@
 // });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // var modalImage1 = document.querySelector(".modal .imgContainer");
+  // var modalImage2 = document.getElementById("modalImage2");
   var modalImage1 = document.getElementById("modalImage1");
   var modalImage2 = document.getElementById("modalImage2");
   var currentZoomLevel = 1; // Initial zoom level
