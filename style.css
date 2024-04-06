@@ -203,39 +203,33 @@ body {
   align-items: flex-end;
 }
 
-.quadrant .quadrant-box img {
+.quadrant-box img {
   width: 50px;
   height: 50px;
   position: absolute;
   cursor: pointer;
 }
-.quadrant .quadrant-box .img1 {
+.quadrant-box img:first-child {
   top: 20%;
   left: 10%;
 }
-.quadrant .quadrant-box .img2 {
+.quadrant-box img:nth-child(2) {
   top: 50%;
   left: 30%;
 }
-.quadrant .quadrant-box .img3 {
+.quadrant-box img:nth-child(3) {
   top: 50%;
   left: 50%;
 }
-.quadrant .quadrant-box .img4 {
+.quadrant-box img:nth-child(4) {
   top: 50%;
   left: 70%;
 }
-.quadrant .quadrant-box .img5 {
-  top: 20%;
-  left: 20%;
-}
-.quadrant .quadrant-box .img6 {
+.quadrant-box .img12 {
   top: 30%;
-  left: 80%;
 }
-.quadrant .quadrant-box .img7 {
-  top: 20%;
-  left: 50%;
+.quadrant-box .img16 {
+  top: 30%;
 }
 
 .hidden {
