@@ -86,7 +86,7 @@ videomarker.on("click", () => {
   scrollimage(19);
 });
 document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
+  if (event.key === "Escape" || event.keyCode === 27) {
     document.querySelectorAll(".modal").forEach((modal) => {
       modal.classList.remove("show");
     });
