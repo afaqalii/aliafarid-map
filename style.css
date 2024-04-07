@@ -3,11 +3,43 @@
   -webkit-font-smoothing: antialiased;
   padding: 0;
   margin: 0;
+  outline: none;
 }
 body {
   font-family: "Nunito Sans", sans-serif;
 }
+/* Nav Style */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  padding: 10px 20px;
+  display: flex;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+}
+.nav button {
+  background-color: #ff6804;
+  padding: 6px 10px;
+  border: none;
+  color: white;
+  height: 40px;
+  border-radius: 10px;
+  width: 140px;
 
+  font-family: "Panama", sans-serif;
+}
+
+.nav img {
+  background-color: white;
+  height: 50px;
+  width: 200px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
 .store-list {
   width: 25%;
   height: 100vh;
@@ -255,4 +287,9 @@ body {
   outline: none;
   color: white;
   border: 0;
+}
+
+video {
+  width: 277px;
+  height: 250px;
 }

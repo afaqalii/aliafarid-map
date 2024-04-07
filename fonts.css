@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Panama", sans-serif;
+
+  src: url(./assets/Fonts/font_panama.ttf);
+}
+@font-face {
+  font-family: "CincinnatusTM";
+
+  src: url(./assets/Fonts/font_cincinnatus.ttf);
+}
+
+* {
+  font-family: "CincinnatusTM";
+}

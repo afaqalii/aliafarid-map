@@ -17,7 +17,9 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./fonts.css" />
     <link rel="stylesheet" href="./Zoom.css" />
   </head>
   <body>
@@ -25,6 +27,11 @@
       <div class="change-type">
         <button id="toggleButton">Change View</button>
       </div>
+      <div class="nav">
+        <button id="about">About</button>
+        <img src="./assets/Logo/1.png" id="logo" alt="" />
+      </div>
+
       <div id="map"></div>
       <div class="quadrant">
         <div class="quadrant-row">
@@ -418,11 +425,57 @@
         <!-- <h1 class="store"></h1> -->
         <span class="close">X</span>
       </div>
+      <!-- Modal 18 -->
+      <div class="modal18 modal">
+        <div id="imageContainer1">
+          <img
+            id="modalImage1"
+            class="modalImage"
+            src="./assets/19.jpg"
+            alt="Image"
+          />
+          <img
+            id="modalImage2"
+            class="modalImage"
+            src="./assets/20.jpg"
+            alt="Image"
+          />
+        </div>
+        <span class="close">X</span>
+      </div>
+      <!-- Modal 19 -->
+      <div class="modal19 modal">
+        <div id="imageContainer1">
+          <video
+            id="modalImage1"
+            height="200"
+            width="200"
+            autoplay
+            muted
+            loop
+            class="modalImage"
+          >
+            <source src="./assets/video1.webm" />
+          </video>
+          <!-- <img
+            id="modalImage1"
+            class="modalImage"
+            src="./assets/19.jpg"
+            alt="Image"
+          /> -->
+          <img
+            id="modalImage2"
+            class="modalImage"
+            src="./assets/20.jpg"
+            alt="Image"
+          />
+        </div>
+        <span class="close">X</span>
+      </div>
     </main>
     <!-- webm's only! Not very many. Autoplay will play them all -->
 
     <!-- Script -->
-    <!-- <script src="./Zoom.js"></script> -->
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="

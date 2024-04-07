@@ -1,6 +1,12 @@
 import storeList from "./Store.js";
-const map = L.map("map").setView([22.9074872, 79.07306671], 5);
-const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const map = L.map("map", { zoomControl: false }).setView(
+  [22.9074872, 79.07306671],
+  5
+);
+// Url for the Sattelite view
+const tileUrl =
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+// const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const attribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Coded by Raja Muhamad Asim with ❤️';
 const tileLayer = L.tileLayer(tileUrl, { attribution });
@@ -17,7 +23,6 @@ function makePopupContent(shop) {
     </div>
   `;
 }
-
 function onEachFeature(feature, layer) {
   layer.on("click", () => {
     // document.querySelector(".modal").classList.add("show");
@@ -40,7 +45,7 @@ storeList.forEach((store) => {
   const { icon } = store.properties; // Ensure each store has an 'icon' property with the URL to the image
   var customIcon = L.icon({
     iconUrl: icon,
-    iconSize: [38, 38], // Adjust as needed
+    iconSize: ["100%", 80], // Adjust as needed
   });
 
   // Create and add marker to the map
@@ -58,11 +63,35 @@ storeList.forEach((store) => {
   // Add the marker's coordinates to the bounds array
   markerBounds.push([coordinates[1], coordinates[0]]);
 });
+let markerLatLngs = markerBounds.map((coord) => L.latLng(coord[0], coord[1]));
+let markerGroupBounds = L.latLngBounds(markerLatLngs);
 
-// After all markers have been added, adjust the map's view to show all markers
-if (markerBounds.length > 0) {
-  map.fitBounds(markerBounds);
-}
+// Set the map view to fit the calculated bounds
+map.fitBounds(markerGroupBounds);
+
+// Custom marker icon with video
+const videoIcon = L.divIcon({
+  html: '<video id="videoMarker" autoplay muted width="50" height="50"><source src="./assets/video1.webm" ></video>',
+  iconSize: [20, 20],
+  className: "video-marker",
+});
+
+// Add marker to the map
+const videomarker = L.marker([35.8617, 104.1954], { icon: videoIcon }).addTo(
+  map
+);
+
+videomarker.on("click", () => {
+  document.querySelector(".modal19").classList.add("show");
+  scrollimage(19);
+});
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.classList.remove("show");
+    });
+  }
+});
 
 document.querySelector(".close").addEventListener("click", () => {
   document.querySelector(".modal").classList.remove("show");
@@ -135,32 +164,39 @@ document.querySelectorAll(".close").forEach((item) => {
 });
 
 //Zoom JS
+
 function scrollimage(modalNumber) {
-  var modalImage1 = document.querySelector(
-    `.modal${modalNumber} #modalImage1`
-    // `.modal${modalNumber} .modalImage:nth-child(1)`
-  );
-  var modalImage2 = document.querySelector(
-    `.modal${modalNumber} #modalImage2`
-    // `.modal${modalNumber} .modalImage:nth-child(2)`
-  );
+  var modalMedia1 = document.querySelector(`.modal${modalNumber} #modalImage1`);
+  var modalMedia2 = document.querySelector(`.modal${modalNumber} #modalImage2`);
   var currentZoomLevel = 1; // Initial zoom level
-  var currentImageIndex = 1; // Start with the first image
+  var currentMediaIndex = 1; // Start with the first media
 
-  // Initially hide the second image
-  modalImage2.style.display = "none";
+  // Initially hide the second media
+  modalMedia2.style.display = "none";
 
-  function updateImageSize() {
+  function updateMediaSize() {
     // Calculate new size
     var newSize = 200 * currentZoomLevel;
-    if (currentImageIndex === 1) {
-      modalImage1.style.width = newSize + "px";
-      modalImage1.style.height = "auto"; // Keep aspect ratio
-      modalImage1.style.display = "block"; // Ensure it's displayed
+    if (currentMediaIndex === 1) {
+      if (modalMedia1.tagName == "VIDEO") {
+        var videoDuration = modalMedia1.duration || 0; // Get video duration or default to 0
+        var currentTime = modalMedia1.currentTime || 0; // Get current playback time or default to 0
+        var newPosition = (currentTime / videoDuration) * newSize; // Calculate new position based on zoom level
+        modalMedia1.currentTime = (newPosition / newSize) * videoDuration; // Update currentTime
+      }
+      modalMedia1.style.width = newSize + "px";
+      modalMedia1.style.height = "auto"; // Keep aspect ratio
+      modalMedia1.style.display = "block"; // Ensure it's displayed
     } else {
-      modalImage2.style.width = newSize + "px";
-      modalImage2.style.height = "auto"; // Keep aspect ratio
-      modalImage2.style.display = "block"; // Ensure it's displayed
+      modalMedia2.style.width = newSize + "px";
+      modalMedia2.style.height = "auto"; // Keep aspect ratio
+      modalMedia2.style.display = "block"; // Ensure it's displayed
+      if (modalMedia2.tagName === "VIDEO") {
+        var videoDuration = modalMedia2.duration || 0; // Get video duration or default to 0
+        var currentTime = modalMedia2.currentTime || 0; // Get current playback time or default to 0
+        var newPosition = (currentTime / videoDuration) * newSize; // Calculate new position based on zoom level
+        modalMedia2.currentTime = (newPosition / newSize) * videoDuration; // Update currentTime
+      }
     }
   }
 
@@ -169,33 +205,63 @@ function scrollimage(modalNumber) {
     var zoomFactor = event.deltaY > 0 ? 0.1 : -0.1; // Adjust zoom speed
     currentZoomLevel += zoomFactor;
 
-    if (currentImageIndex === 2 && currentZoomLevel < 1) {
-      // If we're on the second image and scaling down below the initial size,
-      // switch back to the first image
-      currentImageIndex = 1;
-      modalImage1.style.display = "block";
-      modalImage2.style.display = "none";
-      currentZoomLevel = 9; // Set to max zoom level for the first image to start scaling down from
+    if (currentMediaIndex === 2 && currentZoomLevel < 1) {
+      // If we're on the second media and scaling down below the initial size,
+      // switch back to the first media
+      currentMediaIndex = 1;
+      modalMedia1.style.display = "block";
+      modalMedia2.style.display = "none";
+      currentZoomLevel = 9; // Set to max zoom level for the first media to start scaling down from
     } else {
-      // Keep zoom level in a reasonable range for the current image
+      // Keep zoom level in a reasonable range for the current media
       currentZoomLevel = Math.max(1, currentZoomLevel);
       currentZoomLevel = Math.min(9, currentZoomLevel); // Set maximum zoom to prevent too much zoom
 
-      // Check if it's time to switch images on zooming in
-      if (currentZoomLevel === 9 && currentImageIndex === 1) {
-        currentImageIndex = 2; // Switch to the second image
-        modalImage1.style.display = "none"; // Hide the first image
-        modalImage2.style.display = "block"; // Show the second image
-        currentZoomLevel = 1; // Reset zoom for the second image
+      // Check if it's time to switch media on zooming in
+      if (currentZoomLevel === 9 && currentMediaIndex === 1) {
+        currentMediaIndex = 2; // Switch to the second media
+        modalMedia1.style.display = "none"; // Hide the first media
+        modalMedia2.style.display = "block"; // Show the second media
+        currentZoomLevel = 1; // Reset zoom for the second media
       }
     }
 
-    updateImageSize();
+    updateMediaSize();
   }
 
   // Listen for wheel scroll to zoom in and out
   document.addEventListener("wheel", handleZoom, { passive: false });
 
-  // Initially set the size of the first image
-  updateImageSize();
+  // Initially set the size of the first media
+  updateMediaSize();
 }
+
+//Modal for the About
+
+document.querySelector(`#about`).addEventListener("click", () => {
+  document.querySelector(".modal18").classList.add("show");
+
+  scrollimage(18);
+});
+
+//Changing Logo on every time we referesh the page
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Array of logo image URLs
+  const logoImages = [
+    "./assets/Logo/1.png",
+    "./assets/Logo/2.png",
+    "./assets/Logo/3.png",
+    "./assets/Logo/4.png",
+    "./assets/Logo/5.png",
+  ];
+
+  // Get a random index within the range of logoImages array
+  const randomIndex = Math.floor(Math.random() * logoImages.length);
+
+  // Get the logo element by its id
+  const logoElement = document.getElementById("logo");
+
+  // Set the src attribute of the logo element to a randomly selected logo image URL
+  logoElement.src = logoImages[randomIndex];
+});
