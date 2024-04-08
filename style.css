@@ -431,3 +431,46 @@ video {
 .tooltip-main16:hover .custom-tooltip16 {
   display: block;
 }
+
+/* Responsive style */
+@media (max-width: 540px) {
+  .quadrant-arrow-vertical h3 {
+    color: white;
+    font-size: 14px;
+  }
+  .quadrant-arrow-horizontal h3 {
+    color: white;
+    font-size: 14px;
+  }
+  .quadrant .quadrant-row h4 {
+    font-size: 15px;
+    padding: 2px 4px;
+    height: 24px;
+  }
+  .quadrant-box .imgdiv1 {
+    top: 15%;
+    left: 10%;
+  }
+  .quadrant-box .imgdiv2 {
+    top: 52%;
+    left: 8%;
+  }
+  .quadrant-box .imgdiv3 {
+    top: 13%;
+    left: 50%;
+  }
+  .quadrant-box .imgdiv4 {
+    top: 50%;
+    left: 50%;
+  }
+  .nav button {
+    width: 80px;
+  }
+  .change-type {
+    left: 8px;
+    justify-content: flex-start;
+  }
+  .change-type button {
+    padding: 6px 7px;
+  }
+}
