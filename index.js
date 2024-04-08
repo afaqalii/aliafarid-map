@@ -8,7 +8,7 @@ const tileUrl =
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 // const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const attribution =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Coded by Raja Muhamad Asim with ❤️';
+  '&copy; <a href="https://www.smashcode.dev/">Smash Code</a> contributors, Coded by Smash Code with ❤️';
 const tileLayer = L.tileLayer(tileUrl, { attribution });
 tileLayer.addTo(map);
 
@@ -144,10 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleButton.addEventListener("click", function () {
     isMapVisible = !isMapVisible;
     if (isMapVisible) {
+      toggleButton.innerText = "Map View";
       mapDiv.classList.add("hidden");
       quadrantDiv.classList.remove("hidden");
     } else {
       mapDiv.classList.remove("hidden");
+      toggleButton.innerText = "Graph View";
       quadrantDiv.classList.add("hidden");
     }
   });
