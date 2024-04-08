@@ -251,6 +251,11 @@ document.querySelector(`#about`).addEventListener("click", () => {
 
   scrollimage(18);
 });
+document.querySelector(`#about2`).addEventListener("click", () => {
+  document.querySelector(".modal18").classList.add("show");
+
+  scrollimage(18);
+});
 
 //Changing Logo on every time we referesh the page
 

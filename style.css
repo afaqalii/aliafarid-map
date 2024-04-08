@@ -473,4 +473,7 @@ video {
   .change-type button {
     padding: 6px 7px;
   }
+  .quadrant-row-below {
+    padding-bottom: 25px;
+  }
 }
