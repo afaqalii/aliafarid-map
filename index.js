@@ -52,6 +52,12 @@ storeList.forEach((store) => {
   const marker = L.marker([coordinates[1], coordinates[0]], {
     icon: customIcon,
   }).addTo(map);
+
+  marker.bindTooltip(store.properties.name, {
+    direction: "top",
+    offset: [0, -20],
+  });
+
   marker.on("click", function () {
     // document.querySelector(".modal").classList.add("show");
     const modalNumber = store.id; // Change this according to your modal number
@@ -84,6 +90,10 @@ const videomarker = L.marker([35.8617, 104.1954], { icon: videoIcon }).addTo(
 videomarker.on("click", () => {
   document.querySelector(".modal19").classList.add("show");
   scrollimage(19);
+});
+videomarker.bindTooltip("This is the video marker", {
+  direction: "top",
+  offset: [0, -20],
 });
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
@@ -133,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mapDiv = document.getElementById("map");
   const quadrantDiv = document.querySelector(".quadrant");
   const toggleButton = document.getElementById("toggleButton");
-  let isMapVisible = true;
+  let isMapVisible = false;
 
   toggleButton.addEventListener("click", function () {
     isMapVisible = !isMapVisible;

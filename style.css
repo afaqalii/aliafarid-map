@@ -7,10 +7,14 @@
 }
 body {
   font-family: "Nunito Sans", sans-serif;
+  overflow: hidden;
+}
+.map {
+  position: relative;
 }
 /* Nav Style */
 .nav {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 999;
@@ -28,12 +32,22 @@ body {
   height: 40px;
   border-radius: 10px;
   width: 140px;
-
+  position: absolute;
+  top: 9px;
+  left: 9px;
   font-family: "Panama", sans-serif;
+}
+.nav-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.map #logo {
+  display: block;
 }
 
 .nav img {
-  background-color: white;
   height: 50px;
   width: 200px;
   object-fit: contain;
@@ -131,7 +145,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 99999;
   justify-content: center;
   align-items: center;
   color: white;
@@ -154,10 +168,11 @@ body {
   min-height: 100vh;
   background-color: black;
   position: relative;
-  z-index: 9;
+  z-index: 9999;
 }
 .quadrant-arrow-vertical {
   position: absolute;
+  width: 50px;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -235,33 +250,31 @@ body {
   align-items: flex-end;
 }
 
-.quadrant-box img {
+.quadrant-box .img {
   width: 50px;
   height: 50px;
   position: absolute;
   cursor: pointer;
 }
-.quadrant-box img:first-child {
+.quadrant-box .img img {
+  width: 100%;
+  height: 100%;
+}
+.quadrant-box .imgdiv1 {
   top: 20%;
   left: 10%;
 }
-.quadrant-box img:nth-child(2) {
+.quadrant-box .imgdiv2 {
   top: 50%;
   left: 30%;
 }
-.quadrant-box img:nth-child(3) {
+.quadrant-box .imgdiv3 {
   top: 50%;
   left: 50%;
 }
-.quadrant-box img:nth-child(4) {
+.quadrant-box .imgdiv4 {
   top: 50%;
   left: 70%;
-}
-.quadrant-box .img12 {
-  top: 30%;
-}
-.quadrant-box .img16 {
-  top: 30%;
 }
 
 .hidden {
@@ -273,7 +286,7 @@ body {
   bottom: 0px;
   left: 0px;
   /* background-color: white; */
-  z-index: 999;
+  z-index: 99999;
   height: 40px;
   width: 180px;
   display: flex;
@@ -292,4 +305,129 @@ body {
 video {
   width: 277px;
   height: 250px;
+}
+
+/* tooltips */
+
+.custom-tooltip {
+  /* background-color: white; */
+  width: 300px;
+  height: max-content;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  /* display: none; */
+  z-index: 99999;
+}
+.custom-tooltip1 {
+  display: none;
+}
+.custom-tooltip2 {
+  display: none;
+}
+.custom-tooltip3 {
+  display: none;
+}
+.custom-tooltip4 {
+  display: none;
+}
+.custom-tooltip5 {
+  display: none;
+}
+.custom-tooltip6 {
+  display: none;
+}
+.custom-tooltip7 {
+  display: none;
+}
+.custom-tooltip8 {
+  display: none;
+}
+.custom-tooltip9 {
+  display: none;
+}
+.custom-tooltip10 {
+  display: none;
+}
+.custom-tooltip11 {
+  display: none;
+}
+.custom-tooltip12 {
+  display: none;
+}
+.custom-tooltip13 {
+  display: none;
+}
+.custom-tooltip14 {
+  display: none;
+}
+.custom-tooltip15 {
+  display: none;
+}
+.custom-tooltip16 {
+  display: none;
+}
+
+.tooltip-main1:hover .custom-tooltip1 {
+  display: block;
+}
+.tooltip-main2:hover .custom-tooltip2 {
+  display: block;
+}
+
+.tooltip-main3:hover .custom-tooltip3 {
+  display: block;
+}
+
+.tooltip-main4:hover .custom-tooltip4 {
+  display: block;
+}
+
+.tooltip-main5:hover .custom-tooltip5 {
+  display: block;
+}
+
+.tooltip-main6:hover .custom-tooltip6 {
+  display: block;
+}
+
+.tooltip-main7:hover .custom-tooltip7 {
+  display: block;
+}
+
+.tooltip-main8:hover .custom-tooltip8 {
+  display: block;
+}
+
+.tooltip-main9:hover .custom-tooltip9 {
+  display: block;
+}
+
+.tooltip-main10:hover .custom-tooltip10 {
+  display: block;
+}
+
+.tooltip-main11:hover .custom-tooltip11 {
+  display: block;
+}
+
+.tooltip-main12:hover .custom-tooltip12 {
+  display: block;
+}
+
+.tooltip-main13:hover .custom-tooltip13 {
+  display: block;
+}
+
+.tooltip-main14:hover .custom-tooltip14 {
+  display: block;
+}
+
+.tooltip-main15:hover .custom-tooltip15 {
+  display: block;
+}
+
+.tooltip-main16:hover .custom-tooltip16 {
+  display: block;
 }
