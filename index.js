@@ -96,7 +96,7 @@ videomarker.bindTooltip("This is the video marker", {
   offset: [0, -20],
 });
 document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
+  if (event.key === "Escape" || event.keyCode === 27) {
     document.querySelectorAll(".modal").forEach((modal) => {
       modal.classList.remove("show");
     });
