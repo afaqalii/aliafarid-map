@@ -102,16 +102,12 @@ document.addEventListener("keydown", function (event) {
     });
   }
 });
-
 document.querySelector(".close").addEventListener("click", () => {
   document.querySelector(".modal").classList.remove("show");
 });
-
 const shopsLayer = L.geoJSON(storeList, {
   onEachFeature: onEachFeature,
-  pointToLayer: function (feature, latlng) {
-    // return L.marker(latlng, { icon: feature.properties.icon });
-  },
+  pointToLayer: function (feature, latlng) {},
 });
 shopsLayer.addTo(map);
 
