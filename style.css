@@ -465,6 +465,9 @@ video {
   }
   .nav button {
     width: 80px;
+    top: 0;
+    height: 30px;
+    padding: 5px;
   }
   .change-type {
     left: 8px;
@@ -473,7 +476,11 @@ video {
   .change-type button {
     padding: 6px 7px;
   }
+  .quadrant-row {
+    padding-top: 40px;
+  }
   .quadrant-row-below {
-    padding-bottom: 25px;
+    max-height: 43vh;
+    margin-bottom: 5px;
   }
 }
