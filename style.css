@@ -432,6 +432,30 @@ video {
   display: block;
 }
 
+.modalmobile {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: none;
+  position: fixed;
+  padding-left: 20px;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  justify-content: start;
+  align-items: center;
+  color: white;
+}
+.modalmobile img {
+  width: 93%;
+}
+.modalmobile h2 {
+  color: white;
+}
+.showmobilemodal {
+  display: flex;
+}
+
 /* Responsive style */
 @media (max-width: 540px) {
   .quadrant-arrow-vertical h3 {
@@ -482,5 +506,12 @@ video {
   .quadrant-row-below {
     max-height: 43vh;
     margin-bottom: 5px;
+  }
+  .custom-tooltip {
+    display: block;
+    font-size: 12px;
+  }
+  .quadrant {
+    overflow: hidden;
   }
 }

@@ -3,6 +3,7 @@ const map = L.map("map", { zoomControl: false }).setView(
   [22.9074872, 79.07306671],
   5
 );
+
 // Url for the Sattelite view
 const tileUrl =
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
@@ -23,6 +24,10 @@ function makePopupContent(shop) {
     </div>
   `;
 }
+function isMobileDevice() {
+  return window.innerWidth <= 540;
+}
+
 function onEachFeature(feature, layer) {
   layer.on("click", () => {
     // document.querySelector(".modal").classList.add("show");
@@ -56,14 +61,25 @@ storeList.forEach((store) => {
   marker.bindTooltip(store.properties.name, {
     direction: "top",
     offset: [0, -20],
+    permanent: isMobileDevice(),
   });
 
   marker.on("click", function () {
-    // document.querySelector(".modal").classList.add("show");
     const modalNumber = store.id; // Change this according to your modal number
-    document.querySelector(`.modal${modalNumber}`).classList.add("show");
-    scrollimage(modalNumber);
-    document.querySelector(".store").innerHTML = store.properties.name;
+
+    if (isMobileDevice()) {
+      // For mobile devices
+      document
+        .querySelector(`.modalmobile${modalNumber}`)
+        .classList.add("show");
+      console.log("mobile called");
+    } else {
+      // For devices wider than 540px
+      document.querySelector(`.modal${modalNumber}`).classList.add("show");
+      scrollimage(modalNumber);
+    }
+    // document.querySelector(`.modal${modalNumber}`).classList.add("show");
+    // document.querySelector(".store").innerHTML = store.properties.name;
   });
 
   // Add the marker's coordinates to the bounds array
@@ -94,11 +110,16 @@ videomarker.on("click", () => {
 videomarker.bindTooltip("This is the video marker", {
   direction: "top",
   offset: [0, -20],
+
+  permanent: isMobileDevice(),
 });
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape" || event.keyCode === 27) {
     document.querySelectorAll(".modal").forEach((modal) => {
       modal.classList.remove("show");
+    });
+    document.querySelectorAll(".modalmobile").forEach((modal) => {
+      modal.classList.remove("showmobilemodal");
     });
   }
 });
@@ -156,10 +177,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 document.querySelectorAll(".img").forEach((item) => {
   item.addEventListener("click", (event) => {
-    const modalNumber = event.target.classList[0].slice(3); // Extract the modal number from the class name
-    const modal = document.querySelector(`.modal${modalNumber}`);
-    modal.classList.add("show");
-    scrollimage(modalNumber);
+    const modalNumber = event.target.classList[0].slice(3);
+    if (isMobileDevice()) {
+      const modal = document.querySelector(`.modalmobile${modalNumber}`);
+      modal.classList.add("showmobilemodal");
+      console.log(modalNumber, modal);
+    } else {
+      const modal = document.querySelector(`.modal${modalNumber}`);
+      modal.classList.add("show");
+      scrollimage(modalNumber);
+    }
   });
 });
 
@@ -167,6 +194,13 @@ document.querySelectorAll(".close").forEach((item) => {
   item.addEventListener("click", () => {
     document.querySelectorAll(".modal").forEach((modal) => {
       modal.classList.remove("show");
+    });
+  });
+});
+document.querySelectorAll(".modalmobile .close").forEach((item) => {
+  item.addEventListener("click", () => {
+    document.querySelectorAll(".modalmobile").forEach((modal) => {
+      modal.classList.remove("showmobilemodal");
     });
   });
 });
