@@ -1,7 +1,7 @@
 import storeList from "./Store.js";
 const map = L.map("map", { zoomControl: false }).setView(
   [22.9074872, 79.07306671],
-  5
+  4
 );
 
 // Url for the Sattelite view
@@ -47,72 +47,87 @@ let markerBounds = []; // Array to hold coordinates for all markers
 
 storeList.forEach((store) => {
   const { coordinates } = store.geometry;
-  const { icon } = store.properties; // Ensure each store has an 'icon' property with the URL to the image
-  var customIcon = L.icon({
-    iconUrl: icon,
-    iconSize: ["100%", 80], // Adjust as needed
-  });
+  const { image } = store.properties; // Ensure each store has an 'image' property with the URL to the image
 
-  // Create and add marker to the map
-  const marker = L.marker([coordinates[1], coordinates[0]], {
-    icon: customIcon,
-  }).addTo(map);
+  // Define image options
+  const imageOptions = {
+    opacity: 1,
+    zIndex: 1,
+    interactive: true,
+    title: "Image", // Title for the image overlay
+    alt: store.properties.name, // Alt text for the image overlay
+    content: store.properties.address, // Content for the image overlay
+  };
+  // Create and add image overlay to the map
+  const imageOverlay = L.imageOverlay(image, coordinates, imageOptions).addTo(map);
 
-  marker.bindTooltip(store.properties.name, {
+  // Ensure the image overlay is interactive
+  // // Create custom icon for the marker
+  // const customIcon = L.icon({
+  //   iconUrl: image, // Use the same image URL for the icon
+  //   iconSize: [100, 100], // Adjust icon size as needed
+  // });
+
+  // // Create and add marker to the map
+  // const marker = L.marker([coordinates[1], coordinates[0]], {
+  //   icon: customIcon,
+  // }).addTo(map);
+
+  // Bind tooltip to the marker
+  imageOverlay.bindTooltip(store.properties.name, {
     direction: "top",
     offset: [0, -20],
     permanent: isMobileDevice(),
   });
 
-  marker.on("click", function () {
-    const modalNumber = store.id; // Change this according to your modal number
-
-    if (isMobileDevice()) {
-      // For mobile devices
-      document
-        .querySelector(`.modalmobile${modalNumber}`)
-        .classList.add("show");
-      console.log("mobile called");
-    } else {
-      // For devices wider than 540px
-      document.querySelector(`.modal${modalNumber}`).classList.add("show");
-      scrollimage(modalNumber);
-    }
-    // document.querySelector(`.modal${modalNumber}`).classList.add("show");
-    // document.querySelector(".store").innerHTML = store.properties.name;
+  // Add 'click' event listener to the image overlay
+  imageOverlay.on('click', function (e) {
+    showModal(store)
   });
-
   // Add the marker's coordinates to the bounds array
   markerBounds.push([coordinates[1], coordinates[0]]);
 });
+
+
 let markerLatLngs = markerBounds.map((coord) => L.latLng(coord[0], coord[1]));
 let markerGroupBounds = L.latLngBounds(markerLatLngs);
 
 // Set the map view to fit the calculated bounds
 map.fitBounds(markerGroupBounds);
 
+
+// video overlay
+var videoOverlay = L.videoOverlay("./assets/video1.webm", [[49.5, 98.8], [38.5, 97.8]], {
+  opacity: 0.9,
+  zIndex: 1,
+  interactive: true,
+  title: "Video 1",
+  alt: "overlay.altText",
+  content: "overlay.videoContent",
+}).addTo(map);
 // Custom marker icon with video
-const videoIcon = L.divIcon({
-  html: '<video id="videoMarker" autoplay muted width="50" height="50"><source src="./assets/video1.webm" ></video>',
-  iconSize: [20, 20],
-  className: "video-marker",
-});
+// const videoIcon = L.divIcon({
+//   html: '<video id="videoMarker" autoplay muted width="50" height="50"><source src="./assets/video1.webm" ></video>',
+//   iconSize: [20, 20],
+//   className: "video-marker",
+// });
 
-// Add marker to the map
-const videomarker = L.marker([35.8617, 104.1954], { icon: videoIcon }).addTo(
-  map
-);
+// // Add marker to the map
+// const videomarker = L.marker([35.8617, 104.1954], { icon: videoIcon }).addTo(
+//   map
+// );
 
-videomarker.on("click", () => {
+videoOverlay.on("click", () => {
   document.querySelector(".modal19").classList.add("show");
   scrollimage(19);
 });
-videomarker.bindTooltip("This is the video marker", {
+videoOverlay.bindTooltip("This is the video marker", {
   direction: "top",
   offset: [0, -20],
 
   permanent: isMobileDevice(),
 });
+
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape" || event.keyCode === 27) {
     document.querySelectorAll(".modal").forEach((modal) => {
@@ -123,12 +138,10 @@ document.addEventListener("keydown", function (event) {
     });
   }
 });
-document.querySelector(".close").addEventListener("click", () => {
-  document.querySelector(".modal").classList.remove("show");
-});
+
 const shopsLayer = L.geoJSON(storeList, {
   onEachFeature: onEachFeature,
-  pointToLayer: function (feature, latlng) {},
+  pointToLayer: function (feature, latlng) { },
 });
 shopsLayer.addTo(map);
 
@@ -147,13 +160,16 @@ function flyToStore(store) {
 }
 
 function showModal(store) {
-  document.querySelector(".modal").classList.add("show");
+  // Get modal element
+  const modal = document.querySelector(".modal");
+  // Get image element inside modal
+  const modalImg = document.getElementById("modal-image");
+  // Show modal
+  modal.classList.add("show");
+  // Set image source
+  modalImg.src = store.properties.image;
   console.log(store);
 }
-
-document.querySelector(".close").addEventListener("click", () => {
-  document.querySelector(".modal").classList.remove("show");
-});
 
 document.querySelector(".quadrant").classList.add("hidden");
 document.addEventListener("DOMContentLoaded", function () {
@@ -164,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   toggleButton.addEventListener("click", function () {
     isMapVisible = !isMapVisible;
+    console.log("CLicked")
     if (isMapVisible) {
       toggleButton.innerText = "Map View";
       mapDiv.classList.add("hidden");
@@ -192,6 +209,7 @@ document.querySelectorAll(".img").forEach((item) => {
 
 document.querySelectorAll(".close").forEach((item) => {
   item.addEventListener("click", () => {
+    console.log("triggrered")
     document.querySelectorAll(".modal").forEach((modal) => {
       modal.classList.remove("show");
     });
@@ -227,11 +245,11 @@ function scrollimage(modalNumber) {
         modalMedia1.currentTime = (newPosition / newSize) * videoDuration; // Update currentTime
       }
       modalMedia1.style.width = newSize + "px";
-      modalMedia1.style.height = "auto"; // Keep aspect ratio
+      modalMedia1.style.height = newSize + "px"; // Keep aspect ratio
       modalMedia1.style.display = "block"; // Ensure it's displayed
     } else {
       modalMedia2.style.width = newSize + "px";
-      modalMedia2.style.height = "auto"; // Keep aspect ratio
+      modalMedia2.style.height = newSize + "px"; // Keep aspect ratio
       modalMedia2.style.display = "block"; // Ensure it's displayed
       if (modalMedia2.tagName === "VIDEO") {
         var videoDuration = modalMedia2.duration || 0; // Get video duration or default to 0
@@ -246,7 +264,7 @@ function scrollimage(modalNumber) {
     event.preventDefault();
     var zoomFactor = event.deltaY > 0 ? 0.1 : -0.1; // Adjust zoom speed
     currentZoomLevel += zoomFactor;
-
+    console.log("zoomFactor", zoomFactor)
     if (currentMediaIndex === 2 && currentZoomLevel < 1) {
       // If we're on the second media and scaling down below the initial size,
       // switch back to the first media
@@ -279,7 +297,6 @@ function scrollimage(modalNumber) {
 }
 
 //Modal for the About
-
 document.querySelector(`#about`).addEventListener("click", () => {
   document.querySelector(".modal18").classList.add("show");
 
@@ -292,7 +309,6 @@ document.querySelector(`#about2`).addEventListener("click", () => {
 });
 
 //Changing Logo on every time we referesh the page
-
 document.addEventListener("DOMContentLoaded", function () {
   // Array of logo image URLs
   const logoImages = [
@@ -312,3 +328,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set the src attribute of the logo element to a randomly selected logo image URL
   logoElement.src = logoImages[randomIndex];
 });
+;
+
+
+var newBtn = document.getElementById("new-btn")
+
+newBtn.addEventListener("click",() => {
+  console.log("triggered")
+})

@@ -17,16 +17,68 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./fonts.css" />
     <link rel="stylesheet" href="./Zoom.css" />
+    <style>
+      body,
+      html,
+      #map {
+        height: 100%;
+        margin: 0;
+      }
+      .leaflet-control-zoom {
+        display: none;
+      }
+      .leaflet-popup-content-w rapper {
+        background-color: transparent;
+        border: none;
+      }
+      .leaflet-video-layer,
+      .leaflet-image-layer {
+        cursor: pointer;
+      }
+      .custom-popup {
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .leaflet-popup-content {
+        margin: 0;
+        width: 100%;
+      }
+      .leaflet-popup-content-wrapper {
+        margin: 0;
+        width: 100%;
+      }
+      .leaflet-popup-content-wrapper,
+      .leaflet-popup-tip {
+        background: none;
+        box-shadow: none;
+      }
+      .leaflet-popup-close-button {
+        position: absolute;
+        top: 300px;
+        left: 300px;
+        cursor: pointer;
+        color: #000;
+      }
+      .custom-popup img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
     <main>
       <div class="change-type">
-        <button id="toggleButton">Graph View</button>
-      </div>
+        <button type="button" id="toggleButton">Graph View</button>
+       </div>
       <div class="map">
         <div class="nav">
           <button id="about">About</button>
@@ -34,8 +86,8 @@
             <img src="./assets/Logo/1.png" id="logo" alt="" />
           </div>
         </div>
-
         <div id="map"></div>
+        
       </div>
       <div class="quadrant">
         <div class="nav">
@@ -149,368 +201,11 @@
           <h3>infrastructural</h3>
         </div>
       </div>
-      <!-- Modal 1 -->
-      <div class="modal1 modal">
-        <div id="imageContainer1">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/1.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/2.jpg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-
-      <!-- Modal 2 -->
-      <div class="modal2 modal">
-        <div id="imageContainer2">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/2.jpg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/3.jpg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-
-      <!-- 3 Modal -->
-      <div class="modal3 modal">
-        <div id="imageContainer3">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/3.jpg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/4.jpg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-
-      <!--  -->
-
-      <!-- 4 Modal -->
-      <div class="modal4 modal">
-        <div id="imageContainer4">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/4.jpg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/5.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 5 Modal -->
-      <div class="modal5 modal">
-        <div id="imageContainer5">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/5.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/6.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 6 Modal -->
-      <div class="modal6 modal">
-        <div id="imageContainer6">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/6.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/7.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 7 Modal -->
-      <div class="modal7 modal">
-        <div id="imageContainer7">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/7.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/8.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 8 Modal -->
-      <div class="modal8 modal">
-        <div id="imageContainer8">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/8.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/9.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 9 Modal -->
-      <div class="modal9 modal">
-        <div id="imageContainer9">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/9.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/10.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 10 Modal -->
-      <div class="modal10 modal">
-        <div id="imageContainer10">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/10.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/11.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 11 Modal -->
-      <div class="modal11 modal">
-        <div id="imageContainer11">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/11.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/12.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 12 Modal -->
-      <div class="modal12 modal">
-        <div id="imageContainer12">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/12.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/13.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 13 Modal -->
-      <div class="modal13 modal">
-        <div id="imageContainer13">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/13.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/14.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 14 Modal -->
-      <div class="modal14 modal">
-        <div id="imageContainer14">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/14.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/15.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 15 Modal -->
-      <div class="modal15 modal">
-        <div id="imageContainer15">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/15.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/16.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 16 Modal -->
-      <div class="modal16 modal">
-        <div id="imageContainer16">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/16.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/17.jpeg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- 17 Modal -->
-      <div class="modal17 modal">
-        <div id="imageContainer17">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/17.jpeg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/18.jpg"
-            alt="Image"
-          />
-          <!-- <img id="modalImage" src="./assets/2.jpg" alt="Image" /> -->
-        </div>
-        <!-- <h1 class="store"></h1> -->
-        <span class="close">X</span>
-      </div>
-      <!-- Modal 18 -->
-      <div class="modal18 modal">
-        <div id="imageContainer1">
-          <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/19.jpg"
-            alt="Image"
-          />
-          <img
-            id="modalImage2"
-            class="modalImage"
-            src="./assets/20.jpg"
-            alt="Image"
-          />
-        </div>
-        <span class="close">X</span>
+      <div class="modal">
+        <span style="color: white;" class="close">X</span>
+        <figure>
+          <img class="modal-content" id="modal-image" />
+        </figure>
       </div>
       <!-- Modal 19 -->
       <div class="modal19 modal">
@@ -525,13 +220,7 @@
             class="modalImage"
           >
             <source src="./assets/video1.webm" />
-          </video>
-          <!-- <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/19.jpg"
-            alt="Image"
-          /> -->
+          </video>         
           <img
             id="modalImage2"
             class="modalImage"
@@ -539,9 +228,8 @@
             alt="Image"
           />
         </div>
-        <span class="close">X</span>
+        <span class="close">X here</span>
       </div>
-
       <!-- Modal Box for mobile devices -->
 
       <!-- Modal 1 -->
@@ -903,13 +591,7 @@
             class="modalImage"
           >
             <source src="./assets/video1.webm" />
-          </video>
-          <!-- <img
-            id="modalImage1"
-            class="modalImage"
-            src="./assets/19.jpg"
-            alt="Image"
-          /> -->
+          </video>        
           <img
             id="modalImage2"
             class="modalImage"
@@ -917,8 +599,11 @@
             alt="Image"
           />
         </div>
-        <span class="close">X</span>
+        <span onclick={closeVideoModal} class="close">X he</span>
       </div>
+      <button id="new-btn">
+        click me to see magic
+      </button>
     </main>
     <!-- webm's only! Not very many. Autoplay will play them all -->
 
